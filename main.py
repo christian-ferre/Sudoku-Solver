@@ -65,7 +65,11 @@ class SudokuSolver:
             img = cv2.resize(i, dsize=(28, 28))
             img = np.invert(np.array([img]))
             prediction = self.model.predict(img)
+            if np.argmax(prediction) > 0:
+                number  = np.argmax(prediction)
+            else:
+                number = None
             print(prediction)
-            print("number: ", np.argmax(prediction))
+            print("number: ", number)
             plt.imshow(img[0])
             plt.show()
